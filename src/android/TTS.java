@@ -22,10 +22,10 @@ import org.json.JSONObject;
 
 /*
     Cordova Text-to-Speech Plugin
-    https://github.com/vilic/cordova-plugin-tts
+    https://github.com/balazssuch/cordova-plugin-tts
 
-    by VILIC VANE
-    https://github.com/vilic
+    by Balazs Such
+    https://github.com/balazssuch
 
     MIT License
 */
@@ -195,12 +195,7 @@ public class TTS extends CordovaPlugin implements OnInitListener {
         String[] localeArgs = locale.split("-");
         tts.setLanguage(new Locale(localeArgs[0], localeArgs[1]));
         tts.setVoice(new Voice(voice, new Locale(localeArgs[0], localeArgs[1]), 1, 1, false, null));
-
-        if (Build.VERSION.SDK_INT >= 27) {
-            tts.setSpeechRate((float) rate * 0.7f);
-        } else {
-            tts.setSpeechRate((float) rate);
-        }
+        tts.setSpeechRate((float) rate);
 
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, ttsParams);
     }
