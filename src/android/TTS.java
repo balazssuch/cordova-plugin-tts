@@ -1,32 +1,23 @@
 package com.wordsbaking.cordova.tts;
 
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaPlugin;
-
-import org.apache.cordova.CordovaWebView;
-import org.apache.cordova.CordovaInterface;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.UtteranceProgressListener;
-
-import java.util.HashMap;
-import java.util.Locale;
 import java.util.*;
-
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.PluginResult.Status;
-
-import android.content.Intent;
-import android.content.Context;
-import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /*
     Cordova Text-to-Speech Plugin
@@ -160,6 +151,7 @@ public class TTS extends CordovaPlugin implements OnInitListener {
         String text;
         String locale;
         double rate;
+        String voice;
 
         if (params.isNull("text")) {
             callbackContext.error(ERR_INVALID_OPTIONS);
@@ -180,6 +172,12 @@ public class TTS extends CordovaPlugin implements OnInitListener {
             rate = params.getDouble("rate");
         }
 
+        if (params.isNull("voice")) {
+            voice = "en-us-x-sfg#male_1-local";
+        } else {
+            voice = params.getString("voice");
+        }
+
         if (tts == null) {
             callbackContext.error(ERR_ERROR_INITIALIZING);
             return;
@@ -195,6 +193,7 @@ public class TTS extends CordovaPlugin implements OnInitListener {
 
         String[] localeArgs = locale.split("-");
         tts.setLanguage(new Locale(localeArgs[0], localeArgs[1]));
+        tts.setVoice(new Voice(voice, new Locale(localeArgs[0], localeArgs[1]), 1, 1, false, null));
 
         if (Build.VERSION.SDK_INT >= 27) {
             tts.setSpeechRate((float) rate * 0.7f);
