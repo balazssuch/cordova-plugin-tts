@@ -1,4 +1,4 @@
-package com.wordsbaking.cordova.tts;
+package com.balazssuch.cordova.tts;
 
 import android.content.Context;
 import android.content.Intent;

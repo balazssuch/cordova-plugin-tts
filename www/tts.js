@@ -11,7 +11,7 @@
 */
 
 exports.speak = function (text) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
         var options = {};
 
         if (typeof text == 'string') {

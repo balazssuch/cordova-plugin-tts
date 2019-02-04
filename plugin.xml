@@ -48,11 +48,11 @@
   <platform name="android">
     <config-file target="config.xml" parent="/*">
       <feature name="TTS">
-        <param name="android-package" value="com.wordsbaking.cordova.tts.TTS" />
+        <param name="android-package" value="com.balazssuch.cordova.tts.TTS" />
         <param name="onload" value="true" />
       </feature>
     </config-file>
 
-    <source-file src="src/android/TTS.java" target-dir="src/com/wordsbaking/cordova/tts" />
+    <source-file src="src/android/TTS.java" target-dir="src/com/balazssuch/cordova/tts" />
   </platform>
 </plugin>
