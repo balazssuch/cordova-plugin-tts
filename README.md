@@ -9,7 +9,7 @@ Android 4.0.3+ (API Level 15+)
 ## Installation
 
 ```sh
-cordova plugin add cordova-plugin-tts
+cordova plugin add https://github.com/balazssuch/cordova-plugin-tts.git
 ```
 
 ## Usage
@@ -52,6 +52,8 @@ declare namespace TTS {
         rate?: number;
         /** ambient(iOS) */
         category?: string;
+        /** Only working with android, default: 'en-us-x-sfg#male_1-local' */
+        voice?: string;
     }
 
     function speak(options: IOptions): Promise<void>;

@@ -8,6 +8,7 @@ import android.os.Build;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.UtteranceProgressListener;
+import android.speech.tts.Voice;
 import java.util.*;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
